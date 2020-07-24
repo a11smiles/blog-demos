@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'google-analytics-service'`, () => {
+  it(`should have as title 'application-insights-service'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('google-analytics-service');
+    expect(app.title).toEqual('application-insights-service');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('google-analytics-service app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('application-insights-service app is running!');
   });
 });

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { GoogleAnalyticsService } from '../google-analytics.service';
+import { ApplicationInsightsService } from '../application-insights.service';
 
 @Component({
   template: '',
 })
 export class BasePageComponent implements OnInit {
 
-  constructor(protected $gaService: GoogleAnalyticsService) { }
+  constructor(protected $gaService: ApplicationInsightsService) { }
 
   ngOnInit() {
     this.$gaService.init();

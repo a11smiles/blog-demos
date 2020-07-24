@@ -7,7 +7,7 @@ import { FirstPageComponent } from './first-page/first-page.component';
 import { SecondPageComponent } from './second-page/second-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 
-import { GoogleAnalyticsService } from './google-analytics.service';
+import { ApplicationInsightsService } from './application-insights.service';
 import { BasePageComponent } from './base-page/base-page.component';
 
 @NgModule({
@@ -22,7 +22,7 @@ import { BasePageComponent } from './base-page/base-page.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [GoogleAnalyticsService],
+  providers: [ApplicationInsightsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

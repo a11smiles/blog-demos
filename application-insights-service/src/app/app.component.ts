@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GoogleAnalyticsService } from './google-analytics.service';
+import { ApplicationInsightsService } from './application-insights.service';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +7,9 @@ import { GoogleAnalyticsService } from './google-analytics.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'Google Analytics Service';
+  title = 'Application Insights Service';
 
-  constructor(private _$gaService: GoogleAnalyticsService) {  }
+  constructor(private _$gaService: ApplicationInsightsService) {  }
 
   ngOnInit() {
     this._$gaService.init();

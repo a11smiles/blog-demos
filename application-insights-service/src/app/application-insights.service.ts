@@ -7,7 +7,7 @@ declare var gtag: any;
 @Injectable({
   providedIn: 'root'
 })
-export class GoogleAnalyticsService {
+export class ApplicationInsightsService {
 
   constructor(private _router: Router) {
     this._router.events.pipe(
