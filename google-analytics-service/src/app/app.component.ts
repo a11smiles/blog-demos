@@ -9,9 +9,9 @@ import { GoogleAnalyticsService } from './google-analytics.service';
 export class AppComponent implements OnInit {
   title = 'Google Analytics Service';
 
-  constructor(private _gaService: GoogleAnalyticsService) {  }
+  constructor(private _$gaService: GoogleAnalyticsService) {  }
 
   ngOnInit() {
-    this._gaService.init();
+    this._$gaService.init();
   }
 }

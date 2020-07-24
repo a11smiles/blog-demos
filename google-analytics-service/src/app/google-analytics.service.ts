@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router, RouterEvent, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
-import { getHtmlTagDefinition } from '@angular/compiler';
 
 declare var gtag: any;
 
@@ -10,13 +9,13 @@ declare var gtag: any;
 })
 export class GoogleAnalyticsService {
 
-  constructor(_router: Router) {
-    _router.events.pipe(
+  constructor(private _router: Router) {
+    this._router.events.pipe(
       filter(event => event instanceof NavigationEnd)
-   ).subscribe((e: NavigationEnd) => {
+    ).subscribe((e: NavigationEnd) => {
       gtag('js', new Date());
       gtag('config', 'UA-173474946-1');
-   });
+    });
   }
 
   init() {
@@ -34,4 +33,13 @@ export class GoogleAnalyticsService {
     document.body.appendChild(gtagEl);
   }
 
+  captureEvent(event, category, label, value) {
+    gtag('event', event, {
+      event_category: category,
+      event_label: label,
+      value: value
+    });
+
+    console.log('gtag event captured...');
+  }
 }

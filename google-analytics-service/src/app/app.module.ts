@@ -8,13 +8,15 @@ import { SecondPageComponent } from './second-page/second-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 
 import { GoogleAnalyticsService } from './google-analytics.service';
+import { BasePageComponent } from './base-page/base-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FirstPageComponent,
     SecondPageComponent,
-    HomePageComponent
+    HomePageComponent,
+    BasePageComponent
   ],
   imports: [
     BrowserModule,
