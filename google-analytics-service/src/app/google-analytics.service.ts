@@ -1,0 +1,37 @@
+import { Injectable } from '@angular/core';
+import { Router, RouterEvent, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
+import { getHtmlTagDefinition } from '@angular/compiler';
+
+declare var gtag: any;
+
+@Injectable({
+  providedIn: 'root'
+})
+export class GoogleAnalyticsService {
+
+  constructor(_router: Router) {
+    _router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+   ).subscribe((e: NavigationEnd) => {
+      gtag('js', new Date());
+      gtag('config', 'UA-173474946-1');
+   });
+  }
+
+  init() {
+    const script = document.createElement('script');
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=UA-173474946-1';
+    script.async = true;
+    document.getElementsByTagName('head')[0].appendChild(script);
+
+    const gtagEl = document.createElement('script');
+    const gtagBody = document.createTextNode(`
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+    `);
+    gtagEl.appendChild(gtagBody);
+    document.body.appendChild(gtagEl);
+  }
+
+}

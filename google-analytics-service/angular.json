@@ -60,9 +60,6 @@
                   "maximumWarning": "6kb",
                   "maximumError": "10kb"
                 }
-              ],
-              "scripts": [
-                "src/assets/scripts/google-analytics.js"
               ]
             }
           }
