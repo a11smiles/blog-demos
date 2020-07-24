@@ -25,7 +25,8 @@ export class ApplicationInsightsService {
     this._router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe((page: NavigationEnd) => {
-      this.logPageView(this._activatedRoute.firstChild.snapshot.data.title, page.url);
+      const lastChild = child => child.firstChild ? lastChild(child.firstChild) : child;
+      this.logPageView(lastChild(this._activatedRoute.firstChild).snapshot.data.title, page.url);
     });
   }
 

@@ -13,7 +13,7 @@ export class SecondPageComponent extends BasePageComponent implements OnInit {
   }
 
   click() {
-    this.$aiService.logEvent('button click', { actor: 'Button', page: 'Second Page', count: ++this._clickCnt });
+    this.$aiService.logEvent('button click', { actor: 'Click Me! Button', page: 'Second Page', count: ++this._clickCnt });
     console.log(`Button clicked ${this._clickCnt} times.`);
     console.log('Click for "Second Page" sent!');
   }

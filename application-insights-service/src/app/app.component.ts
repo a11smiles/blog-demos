@@ -18,15 +18,11 @@ export class AppComponent implements OnInit {
     this._router.events.pipe(
       filter(event => event instanceof NavigationEnd),
       map(() => {
-        const child = this._activatedRoute.firstChild;
-        if (child.snapshot.data['title']) {
-          return child.snapshot.data['title'];
-        }
-
-        return this.title;
+        const lastChild = child => child.firstChild ? lastChild(child.firstChild) : child;
+        return lastChild(this._activatedRoute.firstChild).snapshot.data['title'] || this.title;
       })
     ).subscribe((title) => {
-        this._$titleService.setTitle(title);
+      this._$titleService.setTitle(title);
     });
   }
 }
