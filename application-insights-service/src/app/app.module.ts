@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -22,7 +22,7 @@ import { BasePageComponent } from './base-page/base-page.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [ApplicationInsightsService],
+  providers: [Title, ApplicationInsightsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -6,10 +6,8 @@ import { ApplicationInsightsService } from '../application-insights.service';
 })
 export class BasePageComponent implements OnInit {
 
-  constructor(protected $gaService: ApplicationInsightsService) { }
+  constructor(protected $aiService: ApplicationInsightsService) { }
 
-  ngOnInit() {
-    this.$gaService.init();
-  }
+  ngOnInit() {  }
 
 }

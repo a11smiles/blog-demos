@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Router, RouterEvent, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { ApplicationInsights } from '@microsoft/applicationinsights-web';
+import { environment } from 'src/environments/environment';
+
 
 declare var gtag: any;
 
@@ -8,38 +11,46 @@ declare var gtag: any;
   providedIn: 'root'
 })
 export class ApplicationInsightsService {
+  appInsights: ApplicationInsights;
 
-  constructor(private _router: Router) {
+  constructor(private _router: Router, private _activatedRoute: ActivatedRoute) {
+    this.appInsights = new ApplicationInsights({
+      config: {
+        instrumentationKey: environment.applicationInsightsKey,
+        enableAutoRouteTracking: true
+      }
+    });
+    this.appInsights.loadAppInsights();
+
     this._router.events.pipe(
       filter(event => event instanceof NavigationEnd)
-    ).subscribe((e: NavigationEnd) => {
-      gtag('js', new Date());
-      gtag('config', 'UA-173474946-1');
+    ).subscribe((page: NavigationEnd) => {
+      this.logPageView(this._activatedRoute.firstChild.snapshot.data.title, page.url);
     });
   }
 
-  init() {
-    const script = document.createElement('script');
-    script.src = 'https://www.googletagmanager.com/gtag/js?id=UA-173474946-1';
-    script.async = true;
-    document.getElementsByTagName('head')[0].appendChild(script);
+  init() { }
 
-    const gtagEl = document.createElement('script');
-    const gtagBody = document.createTextNode(`
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-    `);
-    gtagEl.appendChild(gtagBody);
-    document.body.appendChild(gtagEl);
+  logPageView(name, url) { // option to call manually
+    this.appInsights.trackPageView({
+      name: name,
+      uri: url
+    });
   }
 
-  captureEvent(event, category, label, value) {
-    gtag('event', event, {
-      event_category: category,
-      event_label: label,
-      value: value
-    });
+  logEvent(name: string, properties?: { [key: string]: any }) {
+    this.appInsights.trackEvent({ name: name }, properties);
+  }
 
-    console.log('gtag event captured...');
+  logMetric(name: string, average: number, properties?: { [key: string]: any }) {
+    this.appInsights.trackMetric({ name: name, average: average }, properties);
+  }
+
+  logException(exception: Error, severityLevel?: number) {
+    this.appInsights.trackException({ exception: exception, severityLevel: severityLevel });
+  }
+
+  logTrace(message: string, properties?: { [key: string]: any }) {
+    this.appInsights.trackTrace({ message: message }, properties);
   }
 }

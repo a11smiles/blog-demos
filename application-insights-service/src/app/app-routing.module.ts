@@ -6,9 +6,9 @@ import { FirstPageComponent } from './first-page/first-page.component';
 import { SecondPageComponent } from './second-page/second-page.component';
 
 const routes: Routes = [
-  { path: '', component: HomePageComponent},
-  { path: 'first-page', component: FirstPageComponent},
-  { path: 'second-page', component: SecondPageComponent}
+  { path: '', component: HomePageComponent, data: { title: 'Home' }},
+  { path: 'first-page', component: FirstPageComponent, data: { title: 'First Page' }},
+  { path: 'second-page', component: SecondPageComponent, data: { title: 'Second Page' }}
 ];
 
 @NgModule({
