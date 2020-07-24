@@ -8,8 +8,6 @@ export class BasePageComponent implements OnInit {
 
   constructor(protected $gaService: GoogleAnalyticsService) { }
 
-  ngOnInit() {
-    this.$gaService.init();
-  }
+  ngOnInit() {  }
 
 }
