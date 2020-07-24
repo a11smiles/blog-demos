@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router, RouterEvent, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
-import { environment } from '../environments/environment';
 
 declare var gtag: any;
 
@@ -20,12 +19,10 @@ export class GoogleAnalyticsService {
   }
 
   init() {
-    if (environment.production) {
-      const script = document.createElement('script');
-      script.src = 'https://www.googletagmanager.com/gtag/js?id=UA-173474946-1';
-      script.async = true;
-      document.getElementsByTagName('head')[0].appendChild(script);
-    }
+    const script = document.createElement('script');
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=UA-173474946-1';
+    script.async = true;
+    document.getElementsByTagName('head')[0].appendChild(script);
 
     const gtagEl = document.createElement('script');
     const gtagBody = document.createTextNode(`
