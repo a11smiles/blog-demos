@@ -34,7 +34,7 @@ export class GoogleAnalyticsService {
     document.body.appendChild(gtagEl);
   }
 
-  captureEvent(event, category, label, value) {
+  logEvent(event, category, label, value) {
     gtag('event', event, {
       event_category: category,
       event_label: label,
