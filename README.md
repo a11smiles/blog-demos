@@ -1,6 +1,6 @@
-# Angular Demos
+# Blog Demos
 
-Various Angular demos that I reference in my [blog](http://jdav.is/blog).
+Various demos that I reference in my [blog](http://jdav.is/blog).
 
 | Repository | Description |  
 |---         |---          | 
