@@ -4,9 +4,6 @@ import { filter } from 'rxjs/operators';
 import { ApplicationInsights } from '@microsoft/applicationinsights-web';
 import { environment } from 'src/environments/environment';
 
-
-declare var gtag: any;
-
 @Injectable({
   providedIn: 'root'
 })
